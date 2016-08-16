@@ -9,13 +9,10 @@ import com.zhy.http.okhttp.https.HttpsUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.security.Key;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
-import java.util.Enumeration;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -47,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         OkHttpUtils.initClient(okHttpClient);
 
-        String url = "https://yaoguai.com:7080/index.php";
+        String url = "https://jegarn.com:7080/index.php";
         OkHttpUtils
                 .get()
                 .url(url)
@@ -66,16 +63,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected InputStream pkcs12ToBks(InputStream pkcs12Stream, String pkcs12Password) {
-        final String alias = "0943d12a6386473001b91b17fa2263d8235a869b";
+        final String alias = "54b79d883ef1d8f74d018b6bb7443863d54a2beb";
         final char[] password = pkcs12Password.toCharArray();
         try {
             KeyStore pkcs12 = KeyStore.getInstance("PKCS12");
             pkcs12.load(pkcs12Stream, password);
             Certificate certificate = pkcs12.getCertificate(alias);
-            Enumeration<String> aliases = pkcs12.aliases();
+            /*Enumeration<String> aliases = pkcs12.aliases();
             while(aliases.hasMoreElements()){
                 System.out.println("alias: " + aliases.nextElement());
-            }
+            }*/
             final Key key = pkcs12.getKey(alias, password);
             KeyStore bks = KeyStore.getInstance("BKS");
             bks.load(null, password);
