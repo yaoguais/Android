@@ -53,6 +53,11 @@ And these are some base usages.
         }
     });
 
+#### send new message
+
+    TextChat packet = new TextChat("my_uid", "friend_uid", TextChat.TYPE, new TextChatContent("hello"));
+    JegarnManager.client.sendPacket(packet);
+
 
 
 
